@@ -1,22 +1,57 @@
 .tables {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
-  width: 100%;
+  width: 75%;
   column-count: 3;
   font-size: 0;
+  border-style: solid;
+  border-color: blue;
+  border-width: 7px;
+  background-color: beige;
+  flex-basis: auto;
 }
-.tables-item {
+
+.tables-item1,
+.tables-item2,
+.tables-item3 {
   display: inline-block;
+  flex-direction: row;
   flex-direction: column;
-  width: 28%;
-  height: 100%;
+  justify-content: space-between;
+  flex-basis: auto;
   vertical-align: top;
-  background: aquamarine;
-  margin-right: 5%;
+  background: rgb(234, 233, 233);
+  margin-right: 5% 5%;
   font-size: 14px;
   text-align: center;
+
 }
-.id {
-  border: 2px solid black;
+
+.pole {
+  padding: 10px 5px 0 5px;
+}
+
+.cards {
+  border: 5px solid;
+  border-color: green;
+  border-width: 5px;
+  font-style: 5px;
+  padding: 2px 0 0 0;
+  margin: 5px;
+
+}
+
+.close.m-4 {
+  display: none;
+  justify-content: right;
+  padding: 2px;
+  opacity: 0;
+
+}
+
+.cards:hover .close.m-4 {
+  display: flex;
+  opacity: 1;
 }
