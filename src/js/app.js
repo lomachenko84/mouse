@@ -3,7 +3,7 @@ const button2 = document.querySelector(".next2")
 const button3 = document.querySelector(".next3")
 const icon = document.querySelector(".close m-4")
 console.log(button);
-function createcard() {
+function createcard(parent) {
   let card = document.createElement("div")
   let icon = document.createElement("span")
   let but = document.createElement("button")
@@ -18,36 +18,38 @@ function createcard() {
     e.preventDefault();
     card.remove()
   })
-  card.addEventListener("mousedown", function (e){
-    mousedown(e,card)
+  card.addEventListener("mousedown", function (e) {
+    mousedown(e, card, parent)
   })
   return card
 }
 button.addEventListener('click', function (e) {
   e.preventDefault();
-  let card = createcard()
   let sib = document.querySelector(".tables-item1")
+  let card = createcard(sib)
   sib.appendChild(card)
 
 })
 
 button2.addEventListener('click', function (y) {
   y.preventDefault();
-  let card = createcard()
   let sib = document.querySelector(".tables-item2")
+  let card = createcard(sib)
   sib.appendChild(card)
 })
 button3.addEventListener('click', function (e) {
   e.preventDefault();
-  let card = createcard()
   let sib = document.querySelector(".tables-item3")
+  let card = createcard(sib)
   sib.appendChild(card)
 })
 
 let currentDroppable = null;
 
- function mousedown(event, ball) {
-
+function mousedown(event, ball, parent) {
+  ball.ondragstart = function () {
+    return false;
+  };  
   let shiftX = event.clientX - ball.getBoundingClientRect().left;
   let shiftY = event.clientY - ball.getBoundingClientRect().top;
 
@@ -87,12 +89,18 @@ let currentDroppable = null;
 
   document.addEventListener('mousemove', onMouseMove);
 
-  ball.onmouseup = function() {
+  ball.onmouseup = function () {
     document.removeEventListener('mousemove', onMouseMove);
     ball.onmouseup = null;
+    if (!currentDroppable) {
+      ball.style.position = "auto"
+      parent.append(ball)
+    }
+
   };
 
 };
+
 
 function enterDroppable(elem) {
   elem.style.background = 'pink';
@@ -101,9 +109,5 @@ function enterDroppable(elem) {
 function leaveDroppable(elem) {
   elem.style.background = '';
 }
-
-ball.ondragstart = function() {
-  return false;
-};
 
 
