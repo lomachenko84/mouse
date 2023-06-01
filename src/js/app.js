@@ -57,6 +57,7 @@ function mousedown(event, ball, parent) {
   ball.style.zIndex = 1000;
   document.body.append(ball);
 
+  
   moveAt(event.pageX, event.pageY);
 
   function moveAt(pageX, pageY) {
